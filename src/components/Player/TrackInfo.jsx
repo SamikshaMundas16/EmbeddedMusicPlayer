@@ -7,31 +7,32 @@ export default function TrackInfo({ title, artist, album }) {
     "https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=400&auto=format&fit=crop";
   const albumSrc = album && album.length ? album : fallback;
 
-  const wrapperRef = useRef(null);
-  const textRef = useRef(null);
+  const wrapperRef = useRef(null); //References the container that holds the track title
+  const textRef = useRef(null); //References the actual title text element
   const [isOverflowing, setIsOverflowing] = useState(false);
 
-  // using a gap between repeated titles so the loop doesn't look cramped.
+  // using a gap between repeated titles
   const GAP = 48;
 
+  //function to calculate whether the text overflows
   const measure = () => {
     const wrapper = wrapperRef.current;
     const textElement = textRef.current;
     if (!wrapper || !textElement) return;
 
-    const textWidth = textElement.scrollWidth;
-    const containerWidth = wrapper.offsetWidth;
+    const textWidth = textElement.scrollWidth; //Actual width
+    const containerWidth = wrapper.offsetWidth; //Visible width
 
     // measuring the actual text width and the visible container width
     //If the text doesn’t fit (textWidth is greater) -> marquee animation
     if (textWidth > containerWidth + 2) {
       // need marquee
       setIsOverflowing(true); // scrolling version of the text instead of static
-      const distance = textWidth + GAP; // how much to shift to hide first copy
-      const speedPxPerSec = 80; // px per second
+      const distance = textWidth + GAP; // how much to shift after first copy
+      const speedPxPerSec = 80; // px per second for animation
       const duration = Math.max(4, distance / speedPxPerSec);
 
-      // setting custom CSS vars so CSS animation uses correct distance & duration
+      // setting custom CSS vars to use correct distance & duration
       wrapper.style.setProperty("--marquee-distance", `${distance}px`);
       wrapper.style.setProperty("--marquee-duration", `${duration}s`);
     } else {
@@ -41,6 +42,7 @@ export default function TrackInfo({ title, artist, album }) {
     }
   };
 
+  //Measures text width when the component mounts or title changes
   useEffect(() => {
     measure();
     // re-measure when window resizes

@@ -1,6 +1,8 @@
 import React from "react";
 import "./TrackList.css";
 
+//Shortens a string to n characters and appends an ellipsis (…) if the string is longer.
+//Prevents overflow for long song titles or artist names
 function truncate(str, n) {
   return str.length > n ? str.slice(0, n - 1) + "…" : str;
 }
@@ -24,6 +26,8 @@ export default function TrackList({
   ];
 
   // Helper to map reordered index back to original
+  //sets currently playing track to idx 0
+  // and shifts the rest of the indexes back by 1, current track is removed from its original position
   const getRealIndex = (idx) =>
     idx === 0 ? currentIndex : idx <= currentIndex ? idx - 1 : idx;
 
@@ -47,11 +51,13 @@ export default function TrackList({
               }
             }}
           >
+            {/* Track Thumbnail */}
             <img
               src={track.album && track.album.length ? track.album : fallback}
               alt={track.title}
               className="track-thumb"
             />
+            {/* Track Info - Title & Artist */}
             <div className="track-info-small">
               <p className="track-title-small" title={track.title}>
                 {truncate(track.title, 22)}
