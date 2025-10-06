@@ -1,6 +1,6 @@
-## Embedded Music Player
+# Embedded Music Player
 
-# Features
+## Features
 
 - Play, pause, skip forward and backward through tracks
 - Repeat modes: Off, Repeat All, Repeat One
@@ -11,7 +11,7 @@
 - Keyboard features: Space to play/pause, arrow keys to seek(jump +5/-5 secs)
 - Track list drawer for easy track selection
 
-# Project Structure
+## Project Structure
 
 - Player.jsx: Main player container composes all smaller components
 - useAudioPlayer.js: Custom hook manages audio state, playback, and controls
@@ -22,7 +22,7 @@
 - Icons.jsx: Contains reusable icon components
 - CSS files for styling each component separately
 
-# Usage
+## Usage
 
 1. Clone the repo:  
    `git clone [repository-url]`
