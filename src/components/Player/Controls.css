@@ -1,0 +1,64 @@
+.controls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 8px;
+  justify-content: center;
+  position: absolute; /* position absolute to center within player card */
+}
+/* common button style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: none;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 150ms ease, background-color 120ms ease,
+    box-shadow 120ms;
+}
+
+.btn.small,
+.btn.small.trackList,
+.btn.small.share {
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  font-size: 14px;
+}
+
+.btn:focus {
+  outline: 3px solid rgba(13, 111, 166, 0.15);
+  outline-offset: 3px;
+}
+
+/* big play circle */
+.btn.play {
+  width: 79px;
+  height: 79px;
+  border-radius: 50%;
+  background: #004a77;
+  box-shadow: 0 8px 20px rgba(13, 111, 166, 0.3),
+    inset 0 -6px 10px rgba(255, 255, 255, 0.03);
+}
+
+.btn.play:hover {
+  transform: translateY(-4px);
+}
+
+.btn.play .play-inner {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* aesthetic touches */
+.btn:hover:not(.play) {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
+}

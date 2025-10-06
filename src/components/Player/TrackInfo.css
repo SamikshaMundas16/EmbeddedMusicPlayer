@@ -1,0 +1,82 @@
+/* src/components/Player/TrackInfo.css */
+.track-info {
+  display: flex;
+  align-items: center;
+}
+
+/* album / artist */
+.album {
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.meta {
+  margin-left: 14px;
+  min-width: 0;
+}
+
+.title-wrapper {
+  overflow: hidden;
+  max-width: 312px;
+  width: 280px;
+  height: 32px;
+  white-space: nowrap;
+  position: relative;
+}
+
+.title-inner {
+  display: inline-flex;
+  gap: 48px; /* same as GAP in JS */
+}
+
+.title,
+.title.clone {
+  font-family: "Google Sans", Arial, Helvetica, sans-serif;
+  font-weight: 500; /* 500 -> Medium */
+  font-size: 24px;
+  color: #ffffff;
+  line-height: 32px;
+  white-space: nowrap;
+}
+
+/* applying animation only when wrapper has .scroll */
+.title-wrapper.scroll .title-inner {
+  /* animation using CSS vars (set by JS)-> --marquee-distance and --marquee-duration */
+  animation: marquee calc(var(--marquee-duration, 20s)) linear infinite;
+  will-change: transform;
+}
+
+.title-wrapper.scroll:hover .title-inner {
+  animation-play-state: paused; /* pause animation on hover */
+}
+
+/* marquee keyframes - translates left by the measured distance (one title + gap) */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--marquee-distance, 300px)));
+  }
+}
+
+.artist {
+  margin-top: 6px;
+  font-family: "Google Sans Text", Arial, Helvetica, sans-serif;
+  font-weight: 400; /* 400 ->  Regular */
+  font-size: 16px;
+  color: #ffffff;
+  opacity: 0.5; /* 50% -> semi-transparent white opacity */
+  line-height: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 312px;
+  max-width: 312px;
+  height: 24px;
+}

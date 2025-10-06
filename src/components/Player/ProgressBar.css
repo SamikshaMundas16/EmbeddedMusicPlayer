@@ -1,0 +1,54 @@
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 416px;
+  margin-top: 12px;
+}
+
+.time {
+  font-size: 12px;
+  width: 36px;
+  text-align: center;
+}
+
+/* The total track background */
+.progress-bar {
+  position: relative;
+  height: 10px;
+  border-radius: 20px;
+  background: #585b66;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+/* The white filled portion that movess with song progress */
+.progress-filled {
+  height: 5px;
+  border-radius: 20px;
+  background: #ffffff;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: width 180ms linear;
+}
+
+/* The draggable circular handle (blue dot) */
+.thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0d6fa6;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 3px 8px rgba(13, 111, 166, 0.35);
+  transition: transform 160ms ease;
+}
+
+/* thumb hover & focus micro interaction */
+.progress-bar:hover .thumb,
+.progress-bar:focus .thumb {
+  transform: translate(-50%, -50%) scale(1.15);
+}

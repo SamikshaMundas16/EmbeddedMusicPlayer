@@ -1,0 +1,201 @@
+.player-outer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px;
+  background: #464545;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: "Google Sans", "Inter", system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+}
+
+/* contains both - player card and track list */
+.player-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+.player-card {
+  width: 520px;
+  height: 297px;
+  background: #2e3240;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 32px 32px 24px 32px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+/* Top row: track info */
+.player-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.btn.favorite {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.02);
+  position: absolute;
+  top: 38px;
+  right: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn.favorite.active {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ff6b8a;
+  transform: scale(1.06);
+}
+
+/* Middle row: timeline */
+.player-middle-progress-bar {
+  margin-top: 8px;
+}
+
+/* Bottom row: controls */
+.player-bottom-controls {
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+/* toggle button */
+.track-list-toggle {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #2e3240;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.track-list-toggle:hover {
+  background: #3a3d4f;
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.track-list-toggle:focus {
+  outline: 2px solid rgba(13, 111, 166, 0.5);
+  outline-offset: 2px;
+}
+
+/* focus outline for keyboard users */
+.player-card:focus-within,
+.player-outer:focus {
+  outline: 3px solid rgba(0, 150, 220, 0.12);
+  outline-offset: 6px;
+}
+
+/* small screens fallback */
+@media (max-width: 560px) {
+  .player-card {
+    width: calc(100% - 32px);
+    padding: 18px;
+  }
+
+  .player-wrapper {
+    width: 100%;
+  }
+}
+/* new tracklist */
+.tracklist-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(20, 23, 31, 0.6);
+  z-index: 1500;
+}
+.tracklist-modal {
+  background: #2e3240;
+  width: 480px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 32px 32px 24px 32px;
+  animation: slideUp 0.3s ease-out;
+}
+.close-tracklist {
+  width: 100%;
+  margin-top: 12px;
+  background: transparent;
+  color: #fff;
+  opacity: 0.7;
+  border: none;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.tracklist-drawer {
+  width: 520px;
+  background: #2e3240;
+  backdrop-filter: blur(18px) saturate(1.4);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 0 28px 6px #0d6fa615;
+  margin-top: -10px;
+  padding: 24px 32px 18px 32px;
+  z-index: 20;
+  position: relative;
+  overflow: auto;
+  animation: drawerGradientIn 0.5s cubic-bezier(0.77, 0, 0.18, 1) backwards;
+}
+.tracklist-drawer > * {
+  position: relative;
+  z-index: 2; /* Put contents above ::before */
+}
+.tracklist-drawer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 75% 20%, #22d3ee33 0%, transparent 70%),
+    radial-gradient(circle at 20% 100%, #3b82f633 0%, transparent 60%);
+  mix-blend-mode: lighten;
+  z-index: 0;
+}
+
+@keyframes drawerGradientIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-28px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

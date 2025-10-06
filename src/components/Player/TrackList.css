@@ -1,0 +1,98 @@
+.track-list-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.track-list-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 12px 8px;
+  width: 100%;
+  max-width: 920px;
+  box-sizing: border-box;
+}
+
+.track-list-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.track-list-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+}
+
+.track-item {
+  display: flex;
+  width: 150px;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  border-radius: 10px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.track-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.track-item.active {
+  outline: 2px solid #0d6fa6;
+}
+
+.track-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.track-info-small {
+  margin: 8px;
+  max-width: 96px;
+}
+
+.track-title-small {
+  font-size: 13px;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-artist-small {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 2px 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 520px) {
+  .track-item {
+    width: 120px;
+  }
+  .track-thumb {
+    height: 90px;
+  }
+}
