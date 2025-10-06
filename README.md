@@ -25,7 +25,7 @@
 ## Usage
 
 1. Clone the repo:  
-   `git clone [repository-url]`
+   `git clone https://github.com/SamikshaMundas16/EmbeddedMusicPlayer.git`
 2. Install dependencies:  
    `npm install`
 3. Start the development server:  
